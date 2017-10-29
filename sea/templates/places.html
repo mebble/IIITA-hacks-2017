@@ -92,6 +92,7 @@
 </head>
 <body>
     <input id="pac-input" class="controls" type="text" placeholder="Search Box">
+    <input id="show-list" class="controls" type="button" value="Show List">
     <div id="map"></div>
     <div class="places-box">
         <h3>Places</h3>
@@ -119,6 +120,10 @@
         var defaultbounds = new google.maps.LatLngBounds( new google.maps.LatLng(25.4358, 81.8463),new google.maps.LatLng(25.4358, 81.8463));
         var searchBox = new google.maps.places.SearchBox(input,{bounds:defaultbounds});
         map.controls[google.maps.ControlPosition.TOP_CENTER].push(input);
+
+        // Create button
+        var button = document.getElementById('show-list');
+        map.controls[google.maps.ControlPosition.TOP_CENTER].push(button);
 
         // Bias the SearchBox results towards current map's viewport.
         map.addListener('bounds_changed', function() {
@@ -192,6 +197,12 @@
                 })(place);
             });
             map.fitBounds(bounds);
+
+            (function() {
+                $("body").animate({
+                    scrollTop: $(".places-box").offset().top
+                }, 2000);
+            })();
         });
     }
 </script>
