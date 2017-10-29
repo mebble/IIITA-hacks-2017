@@ -4,6 +4,7 @@
     <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
     <meta charset="utf-8">
     <title>Places Searchbox</title>
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <style>
         /* Always set the map height explicitly to define the size of the div
          * element that contains the map. */
@@ -87,14 +88,15 @@
             width: 345px;
         }
     </style>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js" async defer></script>
 </head>
 <body>
-<input id="pac-input" class="controls" type="text" placeholder="Search Box">
-<div id="map"></div>
-<p id="latitude"></p>
-<p id="longitude"></p>
-
-
+    <input id="pac-input" class="controls" type="text" placeholder="Search Box">
+    <div id="map"></div>
+    <div class="places-box">
+        <h3>Places</h3>
+        <ul class="list-group" id="places-list"></ul>
+    </div>
 <script>
     // This example adds a search box to a map, using the Google Place Autocomplete
     // feature. People can enter geographical searches. The search box will return a
@@ -107,9 +109,6 @@
     //get loc details
 
     function initAutocomplete() {
-
-
-
         var map = new google.maps.Map(document.getElementById('map'), {
             center: {lat: 25.4358 , lng: 81.8463 },
             zoom: 17,
@@ -131,7 +130,6 @@
         // more details for that place.
         searchBox.addListener('places_changed', function() {
             var places = searchBox.getPlaces();
-
             if (places.length == 0) {
                 return;
             }
@@ -171,17 +169,29 @@
                 } else {
                     bounds.extend(place.geometry.location);
                 }
+
+                // append the place to the list
+                (function(place) {
+                    var name = place.name;
+                    var address = place.formatted_address;
+                    var rating = place.rating;
+                    console.log(place);
+                    var list_item = `<a href="#" class="list-group-item list-group-item-action flex-column align-items-start active">
+                            <div class="d-flex w-100 justify-content-between">
+                              <h5 class="mb-1">${name}</h5>
+                              <small><strong>Rating:</strong> ${rating}</small>
+                            </div>
+                            <p class="mb-1"><strong>Address:</strong><br>${address}</p>
+                            <small>Donec id elit non mi porta.</small>
+                        </a>`;
+                    var $places_list = $("#places-list");
+                    $places_list.append(list_item);
+                })(place);
             });
             map.fitBounds(bounds);
-            setTimeout(function () {
-                location.reload();
-            },15000);
         });
     }
-
 </script>
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDHvITRtq8bS-j9zpUthIErqOELngDNqSs&type=restaurant&radius=20&libraries=places&callback=initAutocomplete"
-        async defer></script>
-
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDHvITRtq8bS-j9zpUthIErqOELngDNqSs&type=restaurant&radius=20&libraries=places&callback=initAutocomplete" async defer></script>
 </body>
 </html>
