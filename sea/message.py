@@ -4,9 +4,6 @@ from flask import Flask,render_template,request,url_for
 app = Flask(__name__)
 
 client = nexmo.Client(key='3a9542ef',secret='e29280bddcd6e45f')
-@app.route('/')
-def hello_world():
-    return 'Hello World!'
 
 @app.route('/')
 def main():
