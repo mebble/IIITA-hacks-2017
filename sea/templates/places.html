@@ -182,7 +182,6 @@
                     var rating = place.rating;
                     var isOpen = place.opening_hours.open_now;
 
-                    console.log(place);
                     var list_item = `<a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
                             <div class="d-flex w-100 justify-content-between">
                               <h5 class="mb-1">${name}</h5>
@@ -196,6 +195,8 @@
                     $places_list.append(list_item);
                 })(place);
             });
+
+            
             map.fitBounds(bounds);
 
             (function() {
