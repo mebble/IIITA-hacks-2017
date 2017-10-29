@@ -1,1 +1,1 @@
-# IIITA-hacks-2017
+# Foodacity
