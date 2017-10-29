@@ -4,6 +4,7 @@
     <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
     <meta charset="utf-8">
     <title>Places Searchbox</title>
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <style>
         /* Always set the map height explicitly to define the size of the div
          * element that contains the map. */
@@ -91,9 +92,6 @@
 <body>
 <input id="pac-input" class="controls" type="text" placeholder="Search Box">
 <div id="map"></div>
-<p id="latitude"></p>
-<p id="longitude"></p>
-
 
 <script>
     // This example adds a search box to a map, using the Google Place Autocomplete
@@ -131,7 +129,7 @@
         // more details for that place.
         searchBox.addListener('places_changed', function() {
             var places = searchBox.getPlaces();
-
+            console.log(places);
             if (places.length == 0) {
                 return;
             }
