@@ -175,15 +175,18 @@
                     var name = place.name;
                     var address = place.formatted_address;
                     var rating = place.rating;
+                    var isOpen = place.opening_hours.open_now;
+
                     console.log(place);
-                    var list_item = `<a href="#" class="list-group-item list-group-item-action flex-column align-items-start active">
+                    var list_item = `<a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
                             <div class="d-flex w-100 justify-content-between">
                               <h5 class="mb-1">${name}</h5>
-                              <small><strong>Rating:</strong> ${rating}</small>
+                              <small>Open: ${isOpen ? "Yes" : "No"}</small>
                             </div>
                             <p class="mb-1"><strong>Address:</strong><br>${address}</p>
-                            <small>Donec id elit non mi porta.</small>
+                            <small><strong>Rating:</strong> ${rating}</small>
                         </a>`;
+
                     var $places_list = $("#places-list");
                     $places_list.append(list_item);
                 })(place);
