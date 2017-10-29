@@ -4,23 +4,23 @@
   <meta charset="UTF-8">
   <title>Login</title>
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700" rel="stylesheet">
-<link href="/static/css/style.css" rel="stylesheet">
-    <link href="/static/postcss/style.postcss" rel="stylesheet">
+
+
+      <link rel="stylesheet" href="css/style.css">
+
 
 </head>
-
 
 <body>
   <body class="align">
 
-
   <div class="grid">
 
-    <form action="127.0.0.1:5000/send_message" method="POST" >
+    <form action="https://httpbin.org/post" method="POST" class="form login">
 
       <div class="form__field">
         <label for="login__username"><svg class="icon"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#user"></use></svg><span class="hidden">Username</span></label>
-        <input id="login__username" type="text" name="Contact" class="form__input" placeholder="Contact" required>
+        <input id="login__username" type="text" name="username" class="form__input" placeholder="Contact" required>
       </div>
 
 
